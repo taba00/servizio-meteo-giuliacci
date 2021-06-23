@@ -101,10 +101,13 @@ const db = new Map();
 db.set(1, { citta: 'Urbino', temperatura: { numero: '27', UM: 'celsius'},  fenomeniAtmosferici: 'Pioggia', umidita: { numero: '80', UM: 'percento'}});
 db.set(2, { citta: 'Rimini', temperatura: { numero: '31', UM: 'celsius'},  fenomeniAtmosferici: 'Coperto', umidita: { numero: '77', UM: 'percento'}});
 db.set(3, { citta: 'San Marino', temperatura: { numero: '28', UM: 'celsius'},  fenomeniAtmosferici: 'Sole', umidita: { numero: '50', UM: 'percento'}});
+
+var prossimoId = 4;
 // fare restfull!!!
 //var nextId = 3;
 
 //GET https://meteo-tabarrini-lorenzo.glitch.me/temperatura
+//Tramite l'id della città, trova tutti i parametri metereologici
 app.get('/temperatura', (req, res) => {
   if(!req.cookies.sessionToken) 
   {
@@ -155,7 +158,66 @@ app.get('/temperatura', (req, res) => {
     }
   });
 });
+
+app.post('/aggiungiCitta', (req, res) => {
+  // Si accetta solo body con tipo application/json
+  if(req.get('Content-Type') != 'application/json') {
+    res.sendStatus(415); //UNSUPPORTED MEDIA TYPE
+    return;
+  }
   
+  console.log("Payload: " + JSON.stringify(req.body));
+  
+  console.log('Sto aggiungendo ' + req.body.citta);
+  
+  // NB: manca la validazione dell'input
+  var id = prossimoId++;
+  //{ citta: 'Urbino', temperatura: { numero: '27', UM: 'celsius'},  fenomeniAtmosferici: 'Pioggia', umidita: { numero: '80', UM: 'percento'}});
+  db.set(id, {
+    citta: req.body.citta,
+    temperatura:
+    {
+      numero: req.body.numero,
+      UM: req.body.celsius
+    },
+    fenomeniAtmosferici: req.body.fenomeniAtmosferici,
+    umidita:
+    {
+      numero: req.body.numero,
+      UM: req.body.celsius
+    }
+  });
+  
+  // NB: nella risposta si aggiunge l'ID per notificare al client il nuovo ID della persona aggiunta
+  res.json({
+    id: id,
+    citta: req.body.citta
+  });
+});
+
+/*
+app.put('/people/:id', (req, res) => {
+  const id = Number.parseInt(req.params.id);
+  if(isNaN(id)) {
+    res.sendStatus(400);
+    return;
+  }
+  
+  if(!data.has(id)) {
+    res.sendStatus(404);
+    return;
+  }
+  
+  console.log("Per ID " + id + ", payload: " + JSON.stringify(req.body));
+  
+  // NB: manca la validazione dell'input
+  data.set(id, {
+    name: req.body.name,
+    surname: req.body.surname
+  });
+  
+  res.sendStatus(200);
+});*/
 
 const listener = app.listen(process.env.PORT, () => {
   console.log("Your app is listening on port " + listener.address().port);
