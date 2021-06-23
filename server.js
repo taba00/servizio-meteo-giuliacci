@@ -98,9 +98,9 @@ app.post('/login', (req, res) => {
 
 //Database interno del servizio meteo
 const db = new Map();
-db.set(1, { citta: 'Urbino', temperatura: { numero: '27', UM: 'celsius'},  fenomeniAtmosferici: 'Pioggia', umidita: { numero: '80', UM: 'percento'}});
-db.set(2, { citta: 'Rimini', temperatura: { numero: '31', UM: 'celsius'},  fenomeniAtmosferici: 'Coperto', umidita: { numero: '77', UM: 'percento'}});
-db.set(3, { citta: 'San Marino', temperatura: { numero: '28', UM: 'celsius'},  fenomeniAtmosferici: 'Sole', umidita: { numero: '50', UM: 'percento'}});
+db.set(1, { citta: 'Urbino', temperatura: { numero: 27, UM: 'celsius'},  fenomeniAtmosferici: 'Pioggia', umidita: { numero: 80, UM: 'percento'}});
+db.set(2, { citta: 'Rimini', temperatura: { numero: 31, UM: 'celsius'},  fenomeniAtmosferici: 'Coperto', umidita: { numero: 77, UM: 'percento'}});
+db.set(3, { citta: 'San Marino', temperatura: { numero: 28, UM: 'celsius'},  fenomeniAtmosferici: 'Sole', umidita: { numero: 50, UM: 'percento'}});
 
 var prossimoId = 4;
 // fare restfull!!!
@@ -161,21 +161,21 @@ app.get('/temperatura', (req, res) => {
 
 app.post('/aggiungiCitta', (req, res) => {
   // Si accetta solo body con tipo application/json
-  /*if(!req.cookies.sessionToken) 
+  if(!req.cookies.sessionToken) 
   {
     res.sendStatus(401);
     return;
-  }*/
+  }
   
-  /*const chiave = req.cookies.sessionToken;
-  console.log('Token: ' + chiave);*/
+  const chiave = req.cookies.sessionToken;
+  console.log('Token: ' + chiave);
   
   jwt.verify(chiave, cod_segreto, (err, chiaveVerificata) => {
-    /*if(err) 
+    if(err) 
     {
       console.log(err);
       res.sendStatus(401);
-    }*/
+    }
     else 
     {
       console.log(chiaveVerificata);
@@ -193,20 +193,18 @@ app.post('/aggiungiCitta', (req, res) => {
   
       // NB: manca la validazione dell'input
       var id = prossimoId++;
-      //{ citta: 'Urbino', temperatura: { numero: '27', UM: 'celsius'},  fenomeniAtmosferici: 'Pioggia', umidita: { numero: '80', UM: 'percento'}});
-      db.set(id, {
-        citta: req.body.citta,
-        temperatura:
-        {
-          numero: req.body.numero,
-          UM: req.body.celsius
-        },
-        fenomeniAtmosferici: req.body.fenomeniAtmosferici,
-        umidita:
-        {
-          numero: req.body.numero,
-          UM: req.body.celsius
-        }
+      db.set(id,
+            {
+               citta:req.body.citta,
+               "temperatura":{
+                  "numero": req.body.numero,
+                  "UM": req.body.UM
+               },
+               "fenomeniAtmosferici": req.body.,
+               "umidita":{
+                  "numero":90,
+                  "UM":"percento"
+               }
       });
   
     // NB: nella risposta si aggiunge l'ID per notificare al client il nuovo ID della persona aggiunta
@@ -216,6 +214,7 @@ app.post('/aggiungiCitta', (req, res) => {
     });
     }
   }
+    });
 });
     
 
