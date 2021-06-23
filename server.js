@@ -105,7 +105,7 @@ db.set(1, { citta: 'Urbino', temperatura: { UM: 'celsius'},  fenomeniAtmosferici
 //var nextId = 3;
 
 //GET https://meteo-tabarrini-lorenzo.glitch.me/temperatura
-app.get('/temperatura/:id', (req, res) => {
+app.get('/temperatura', (req, res) => {
   if(!req.cookies.sessionToken) 
   {
     res.sendStatus(401);
@@ -125,14 +125,14 @@ app.get('/temperatura/:id', (req, res) => {
       console.log(chiaveVerificata);
       if(chiaveVerificata.body.sub == 'gestore' || chiaveVerificata.body.sub == 'utente') {
         //const temperatura = Math.floor(Math.random() * 35) + 1
-        const citta = Number.parseInt(req.params.id);
-        console.log('Citta inserita: ' + citta);
-            if(!db.has(citta)) {
-              res.sendStatus(404); //NOT FOUND
-              return;
-            }
+          const city = req.query.id;
+  
+      if(!db.has(citta)) {
+        res.sendStatus(404); //NOT FOUND
+        return;
+      }
         
-        const meteo = db.get(citta);
+        const meteo = db.get(city);
         res.format({
               'application/json': () => {
             res.json({
