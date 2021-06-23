@@ -98,8 +98,8 @@ app.post('/login', (req, res) => {
 
 //Database interno delle temperature
 const db = new Map();
-db.set(1, { citta: 'Urbino', temperatura: '31', UM: 'celsius',  } );
-db.set(2, { name: 'Luigi', surname: 'Verdi' } );
+db.set(1, { citta: 'Urbino', temperatura: { UM: 'celsius'},  fenomeniAtmosferici: 'Pioggia', umidita: '70'} );
+db.set(2, { citta: 'Rimini', temperatura: '29', UM: 'celsius',  fenomeniAtmosferici: 'Pioggia'} );
 
 var nextId = 3;
 
