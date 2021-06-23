@@ -96,14 +96,15 @@ app.post('/login', (req, res) => {
   }
 });
 
-//Database interno delle temperature
+//Database interno del servizio meteo
 const db = new Map();
-db.set(1, { citta: 'Urbino', temperatura: { UM: 'celsius'},  fenomeniAtmosferici: 'Pioggia', umidita: '70'} );
+db.set('Urbino', { citta: 'Urbino', temperatura: { UM: 'celsius'},  fenomeniAtmosferici: 'Pioggia', umidita: '70'} );
 db.set(2, { citta: 'Rimini', temperatura: '29', UM: 'celsius',  fenomeniAtmosferici: 'Pioggia'} );
 
+// fare restfull!!!
 var nextId = 3;
 
-//GET https://meteo-tabarrini-lorenzo.glitch.me/secret
+//GET https://meteo-tabarrini-lorenzo.glitch.me/temperatura
 app.get('/temperatura', (req, res) => {
   if(!req.cookies.sessionToken) 
   {
@@ -111,19 +112,25 @@ app.get('/temperatura', (req, res) => {
     return;
   }
   
-  const token = req.cookies.sessionToken;
-  console.log('Token: ' + token);
+  const chiave = req.cookies.sessionToken;
+  console.log('Token: ' + chiave);
   
-  jwt.verify(token, cod_segreto, (err, verifiedToken) => {
+  jwt.verify(chiave, cod_segreto, (err, chiaveVerificata) => {
     if(err) {
       console.log(err);
       res.sendStatus(401);
       
     }
     else {
-      console.log(verifiedToken);
-      if(verifiedToken.body.sub == 'gestore' || verifiedToken.body.sub == 'utente') {
-        const temperatura = Math.floor(Math.random() * 35) + 1
+      console.log(chiaveVerificata);
+      if(chiaveVerificata.body.sub == 'gestore' || chiaveVerificata.body.sub == 'utente') {
+        //const temperatura = Math.floor(Math.random() * 35) + 1
+        const citta = Number.parseInt(req.params.citta);
+            if(!db.has(citta)) {
+              res.sendStatus(404); //NOT FOUND
+              return;
+            }
+        
         res.format({
               'application/json': () => {
             res.json({
