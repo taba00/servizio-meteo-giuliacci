@@ -88,14 +88,16 @@ app.get('/secret', (req, res) => {
     if(err) {
       console.log(err);
       res.sendStatus(401);
+      
     }
     else {
       console.log(verifiedToken);
-      if(verifiedToken.body.sub == 'taba') {
+      if(verifiedToken.body.sub == 'giuliacci') {
         res.send('Documento segreto di Taba');
       }
       else {
         res.sendStatus(403);
+        
       }
     }
   });
