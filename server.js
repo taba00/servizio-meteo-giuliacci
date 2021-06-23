@@ -16,7 +16,7 @@ const logins = new Map();
 logins.set('giuliacci', {
   id: 1,
   salt: '72354',
-  hash: 'd1c22371592766f4d35e000a53e04e2e042d42d35ed8779cd08635ecc274c3bb'
+  hash: '676078535870a7fc8b536ff352a9cdd74d376467c40b4ca542b2695abe9b507a'
 });
 
 const sessions = new Map();
@@ -75,7 +75,7 @@ app.post('/login', (req, res) => {
   }
 });
 
-app.get('/secret/jwt', (req, res) => {
+app.get('/secret', (req, res) => {
   if(!req.cookies.sessionToken) {
     res.sendStatus(401);
     return;
