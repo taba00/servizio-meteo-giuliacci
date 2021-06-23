@@ -161,63 +161,64 @@ app.get('/temperatura', (req, res) => {
 
 app.post('/aggiungiCitta', (req, res) => {
   // Si accetta solo body con tipo application/json
-  if(req.get('Content-Type') != 'application/json') {
-    res.sendStatus(415); //UNSUPPORTED MEDIA TYPE
+  /*if(!req.cookies.sessionToken) 
+  {
+    res.sendStatus(401);
     return;
-  }
+  }*/
   
-  console.log("Payload: " + JSON.stringify(req.body));
+  /*const chiave = req.cookies.sessionToken;
+  console.log('Token: ' + chiave);*/
   
-  console.log('Sto aggiungendo ' + req.body.citta);
-  
-  // NB: manca la validazione dell'input
-  var id = prossimoId++;
-  //{ citta: 'Urbino', temperatura: { numero: '27', UM: 'celsius'},  fenomeniAtmosferici: 'Pioggia', umidita: { numero: '80', UM: 'percento'}});
-  db.set(id, {
-    citta: req.body.citta,
-    temperatura:
+  jwt.verify(chiave, cod_segreto, (err, chiaveVerificata) => {
+    /*if(err) 
     {
-      numero: req.body.numero,
-      UM: req.body.celsius
-    },
-    fenomeniAtmosferici: req.body.fenomeniAtmosferici,
-    umidita:
+      console.log(err);
+      res.sendStatus(401);
+    }*/
+    else 
     {
-      numero: req.body.numero,
-      UM: req.body.celsius
-    }
-  });
+      console.log(chiaveVerificata);
+      if(chiaveVerificata.body.sub == 'gestore') 
+      {
+        if(req.get('Content-Type') != 'application/json') 
+        {
+          res.sendStatus(415); //UNSUPPORTED MEDIA TYPE
+          return;
+        }
   
-  // NB: nella risposta si aggiunge l'ID per notificare al client il nuovo ID della persona aggiunta
-  res.json({
+      console.log("Payload: " + JSON.stringify(req.body));
+  
+      console.log('Sto aggiungendo ' + req.body.citta);
+  
+      // NB: manca la validazione dell'input
+      var id = prossimoId++;
+      //{ citta: 'Urbino', temperatura: { numero: '27', UM: 'celsius'},  fenomeniAtmosferici: 'Pioggia', umidita: { numero: '80', UM: 'percento'}});
+      db.set(id, {
+        citta: req.body.citta,
+        temperatura:
+        {
+          numero: req.body.numero,
+          UM: req.body.celsius
+        },
+        fenomeniAtmosferici: req.body.fenomeniAtmosferici,
+        umidita:
+        {
+          numero: req.body.numero,
+          UM: req.body.celsius
+        }
+      });
+  
+    // NB: nella risposta si aggiunge l'ID per notificare al client il nuovo ID della persona aggiunta
+    res.json({
     id: id,
     citta: req.body.citta
-  });
+    });
+    }
+  }
 });
+    
 
-/*
-app.put('/people/:id', (req, res) => {
-  const id = Number.parseInt(req.params.id);
-  if(isNaN(id)) {
-    res.sendStatus(400);
-    return;
-  }
-  
-  if(!data.has(id)) {
-    res.sendStatus(404);
-    return;
-  }
-  
-  console.log("Per ID " + id + ", payload: " + JSON.stringify(req.body));
-  
-  // NB: manca la validazione dell'input
-  data.set(id, {
-    name: req.body.name,
-    surname: req.body.surname
-  });
-  
-  res.sendStatus(200);
-});*/
 
 const listener = app.listen(process.env.PORT, () => {
   console.log("Your app is listening on port " + listener.address().port);
