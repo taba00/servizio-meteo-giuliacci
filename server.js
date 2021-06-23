@@ -10,6 +10,8 @@ const sha256 = require('js-sha256');
 const jwt = require('njwt');
 const cod_segreto = process.env.JWT_SECRET;
 
+app.use(express.json());
+
 
 //username: gestore
 //password: vivailmeteo123
@@ -86,7 +88,7 @@ function autenticazioneUtente(req, res)
 
 //POST https://meteo-tabarrini-lorenzo.glitch.me/login
 app.post('/login', (req, res) => {
-    if(autenticazioneUtente(req, res)) {
+  if(autenticazioneUtente(req, res)) {
     res.sendStatus(200);
   }
   else {
@@ -123,7 +125,7 @@ app.get('/secret', (req, res) => {
   });
 });
   
-// listen for requests :)
+
 const listener = app.listen(process.env.PORT, () => {
   console.log("Your app is listening on port " + listener.address().port);
 });
