@@ -19,6 +19,7 @@ logins.set('giuliacci', {
   hash: 'd1c22371592766f4d35e000a53e04e2e042d42d35ed8779cd08635ecc274c3bb'
 });
 
+const sessions = new Map();
 
 app.post('/login', (req, res) => {
   if(!req.headers.authorization) {
@@ -59,7 +60,7 @@ app.post('/login', (req, res) => {
   if(hashed == user.hash) {
     const claims = {
       sub: login,
-      iss: 'PDGT'
+      iss: 'meteorologia'
     };
     
     const token = jwt.create(claims, secret);
