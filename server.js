@@ -98,9 +98,9 @@ app.post('/login', (req, res) => {
 
 //Database interno del servizio meteo
 const db = new Map();
-db.set(1, { citta: 'Urbino', temperatura: { UM: 'celsius'},  fenomeniAtmosferici: 'Pioggia', umidita: '70'} );
-//db.set(2, { citta: 'Rimini', temperatura: '29', UM: 'celsius',  fenomeniAtmosferici: 'Pioggia'} );
-
+db.set(1, { citta: 'Urbino', temperatura: { numero: '27', UM: 'celsius'},  fenomeniAtmosferici: 'Pioggia', umidita: { numero: '80', UM: 'percento'}});
+db.set(2, { citta: 'Rimini', temperatura: { numero: '31', UM: 'celsius'},  fenomeniAtmosferici: 'Coperto', umidita: { numero: '77', UM: 'percento'}});
+db.set(3, { citta: 'San Marino', temperatura: { numero: '28', UM: 'celsius'},  fenomeniAtmosferici: 'Sole', umidita: { numero: '50', UM: 'percento'}});
 // fare restfull!!!
 //var nextId = 3;
 
@@ -125,14 +125,19 @@ app.get('/temperatura', (req, res) => {
       console.log(chiaveVerificata);
       if(chiaveVerificata.body.sub == 'gestore' || chiaveVerificata.body.sub == 'utente') {
         //const temperatura = Math.floor(Math.random() * 35) + 1
-          const city = req.query.id;
+      const id = Number.parseInt(req.query.id);
   
-      if(!db.has(citta)) {
+      if(isNaN(id)) 
+      {
+        res.sendStatus(400); //BAD REQUEST
+        return;
+      }
+      if(!db.has(id)) {
         res.sendStatus(404); //NOT FOUND
         return;
       }
         
-        const meteo = db.get(city);
+        const meteo = db.get(id);
         res.format({
               'application/json': () => {
             res.json({
