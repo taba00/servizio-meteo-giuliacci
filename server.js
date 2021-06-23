@@ -97,7 +97,7 @@ app.post('/login', (req, res) => {
 });
 
 //GET https://meteo-tabarrini-lorenzo.glitch.me/secret
-app.get('/secret', (req, res) => {
+app.get('/temperatura', (req, res) => {
   if(!req.cookies.sessionToken) 
   {
     res.sendStatus(401);
@@ -115,8 +115,17 @@ app.get('/secret', (req, res) => {
     }
     else {
       console.log(verifiedToken);
-      if(verifiedToken.body.sub == 'giuliacci') {
-        res.send('Sono nella parte segreta');
+      if(verifiedToken.body.sub == 'gestore') {
+        const temperatura = Math.floor(Math.random() * 35) + 1
+        res.format({
+              'application/json': () => {
+            res.json({
+        temperatura: temperatura,
+        UM: '°'
+      });
+              }
+        });
+        res.send(JSON.stringify(rndInt + '°'));
       }
       else {
         res.sendStatus(403);
