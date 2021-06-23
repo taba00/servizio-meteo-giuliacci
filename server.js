@@ -11,15 +11,24 @@ const jwt = require('njwt');
 const cod_segreto = process.env.JWT_SECRET;
 
 
-//username: giuliacci
+//username: gestore
 //password: vivailmeteo123
 const logins = new Map();
-logins.set('giuliacci', {
+logins.set('gestore', {
   id: 1,
   salt: '72354',
   hash: '676078535870a7fc8b536ff352a9cdd74d376467c40b4ca542b2695abe9b507a'
 });
 
+//username: utente
+//password: vivailmeteo456
+logins.set('utente', {
+  id: 2,
+  salt: '69875',
+  hash: 'd4aaaab9dfe83430fc06099a34996628c021d41e4e0eefc763b6b5665fcd7aa4'
+});
+
+//autenticazione utente con JWT
 function autenticazioneUtente(req, res)
 {
   if(!req.headers.authorization) {
@@ -64,7 +73,7 @@ function autenticazioneUtente(req, res)
     };
     
     const token = jwt.create(claims, cod_segreto);
-    token.setExpiration(new Date().getTime() + 100000);
+    token.setExpiration(new Date().getTime() + 600000); //10 minuti
     console.log('New token: ' + token.compact());
     
     res.cookie('sessionToken', token.compact());
@@ -87,7 +96,8 @@ app.post('/login', (req, res) => {
 
 //GET https://meteo-tabarrini-lorenzo.glitch.me/secret
 app.get('/secret', (req, res) => {
-  if(!req.cookies.sessionToken) {
+  if(!req.cookies.sessionToken) 
+  {
     res.sendStatus(401);
     return;
   }
@@ -104,11 +114,10 @@ app.get('/secret', (req, res) => {
     else {
       console.log(verifiedToken);
       if(verifiedToken.body.sub == 'giuliacci') {
-        res.send('Documento segreto di Taba');
+        res.send('Sono nella parte segreta');
       }
       else {
         res.sendStatus(403);
-        
       }
     }
   });
