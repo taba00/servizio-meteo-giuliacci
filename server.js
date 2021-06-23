@@ -96,6 +96,13 @@ app.post('/login', (req, res) => {
   }
 });
 
+//Database interno delle temperature
+const db = new Map();
+db.set(1, { citta: 'Urbino', temperatura: '31', UM: 'celsius',  } );
+db.set(2, { name: 'Luigi', surname: 'Verdi' } );
+
+var nextId = 3;
+
 //GET https://meteo-tabarrini-lorenzo.glitch.me/secret
 app.get('/temperatura', (req, res) => {
   if(!req.cookies.sessionToken) 
@@ -115,20 +122,19 @@ app.get('/temperatura', (req, res) => {
     }
     else {
       console.log(verifiedToken);
-      if(verifiedToken.body.sub == 'gestore') {
+      if(verifiedToken.body.sub == 'gestore' || verifiedToken.body.sub == 'utente') {
         const temperatura = Math.floor(Math.random() * 35) + 1
         res.format({
               'application/json': () => {
             res.json({
         temperatura: temperatura,
-        UM: '°'
-      });
-              }
+        UM: 'celsius'
         });
-        res.send(JSON.stringify(rndInt + '°'));
+      }
+        });
       }
       else {
-        res.sendStatus(403);
+        res.sendStatus(401);
       }
     }
   });
