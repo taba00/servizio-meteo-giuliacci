@@ -8,7 +8,8 @@ app.use(cookieparser());
 const sha256 = require('js-sha256');
 
 const jwt = require('njwt');
-const secret = process.env.JWT_SECRET;
+const cod_segreto = process.env.JWT_SECRET;
+
 
 //username: giuliacci
 //password: vivailmeteo123
@@ -19,9 +20,8 @@ logins.set('giuliacci', {
   hash: '676078535870a7fc8b536ff352a9cdd74d376467c40b4ca542b2695abe9b507a'
 });
 
-const sessions = new Map();
-
-app.post('/login', (req, res) => {
+function autenticazioneUtente(req, res)
+{
   if(!req.headers.authorization) {
     res.sendStatus(401);
     return;
@@ -63,8 +63,8 @@ app.post('/login', (req, res) => {
       iss: 'meteorologia'
     };
     
-    const token = jwt.create(claims, secret);
-    token.setExpiration(new Date().getTime() + 10000);
+    const token = jwt.create(claims, cod_segreto);
+    token.setExpiration(new Date().getTime() + 100000);
     console.log('New token: ' + token.compact());
     
     res.cookie('sessionToken', token.compact());
@@ -73,8 +73,19 @@ app.post('/login', (req, res) => {
   else {
     res.sendStatus(401);
   }
+}
+
+//POST https://meteo-tabarrini-lorenzo.glitch.me/login
+app.post('/login', (req, res) => {
+    if(autenticazioneUtente(req, res)) {
+    res.sendStatus(200);
+  }
+  else {
+    res.sendStatus(401);
+  }
 });
 
+//GET https://meteo-tabarrini-lorenzo.glitch.me/secret
 app.get('/secret', (req, res) => {
   if(!req.cookies.sessionToken) {
     res.sendStatus(401);
@@ -84,7 +95,7 @@ app.get('/secret', (req, res) => {
   const token = req.cookies.sessionToken;
   console.log('Token: ' + token);
   
-  jwt.verify(token, secret, (err, verifiedToken) => {
+  jwt.verify(token, cod_segreto, (err, verifiedToken) => {
     if(err) {
       console.log(err);
       res.sendStatus(401);
@@ -102,7 +113,7 @@ app.get('/secret', (req, res) => {
     }
   });
 });
-
+  
 // listen for requests :)
 const listener = app.listen(process.env.PORT, () => {
   console.log("Your app is listening on port " + listener.address().port);
