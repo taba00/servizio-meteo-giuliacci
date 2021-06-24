@@ -105,12 +105,12 @@ db.set(3, { citta: 'San Marino', temperatura: { numero: 28, UM: 'celsius'},  fen
 var prossimoId = 4;
 
 app.get('/meteo', (req, res) => {
-  /*for(var i = 0; i < db.lenght; i++)
+  for(var i = 0; i < db.lenght; i++)
     {
-      res.type('text/plain').send(db[i]);
-    }*/
-  
-  res.type('text/plain').send(db.prototype.values());
+      console.log(db.get(i));
+    }
+  console.log(db.get(1));
+  //res.type('text/plain').send(db.prototype.values());
   
 });
 
@@ -271,7 +271,7 @@ const id = Number.parseInt(req.query.id);
 
 app.post('/modificaDato', (req, res) => {
       const id = Number.parseInt(req.query.id);
-      const campo = req.query.campo;
+      var campo = req.query.campo;
       const nuovoValore = req.query.nuovoValore;
   
       if(isNaN(id)) 
@@ -287,6 +287,8 @@ app.post('/modificaDato', (req, res) => {
       
       const riga = db.get(id);
       console.log(riga);
+      
+      console.log(riga.fenomeniAtmosferici);
      res.sendStatus(200);
   
 });
