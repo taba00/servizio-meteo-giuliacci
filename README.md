@@ -34,7 +34,7 @@ Rappresenta in formato JSON tutte le citta con i relativi dati meteo presenti ne
 Rappresenta in formato JSON la città richiesta tramite identificativo.
 Campo | Tipo | Descrizione | Obbligatorio
 --- | --- | --- | --- 
-id | integer | id della città di cui si vogliono sapere i dati meteo | Si
+`id` | integer | id della città di cui si vogliono sapere i dati meteo | Si
 ## GET [aggiungiCitta](https://meteo-tabarrini-lorenzo.glitch.me/meteo/aggiungiCitta)
 Rappresenta il metodo per aggiungere una nuova città al servizio. <br><br>La richiesta può essere effettuata
 solo dall'amministratore del servizio (in questo caso l'utente "gestore").<br><br>Nel body della richesta HTTP, il metodo accetta solo 
@@ -57,16 +57,24 @@ il tipo di contenuto `application/json` nel seguente formato:<br>
 Elimina i dati meteo di una certa città tramite l'identificativo.
 Campo | Tipo | Descrizione | Obbligatorio
 --- | --- | --- | --- 
-id | integer | id della città di cui si vogliono eliminare i dati meteo | Si
+`id` | integer | id della città di cui si vogliono eliminare i dati meteo | Si
 ## POST [modificaDato](https://meteo-tabarrini-lorenzo.glitch.me/meteo/modificaDato)
 Modifica un certo tipo di dato metereologico.
 Campo | Tipo | Descrizione | Obbligatorio
 --- | --- | --- | --- 
-id | integer | id della città di cui si vogliono modificare i dati meteo | Si
-campo | string | nome del campo che si vuole modificare (Vedi [eliminaCitta](https://google.com)) | Si
-nuovoValore | integer, string | nuovo valore da assegnare al campo indicato precedentemente | Si
+`id` | integer | id della città di cui si vogliono modificare i dati meteo | Si
+`campo` | string | nome del campo che si vuole modificare (Vedi [eliminaCitta](https://google.com)) | Si
+`nuovoValore` | integer, string | nuovo valore da assegnare al campo indicato precedentemente | Si
+<a id="campo"></a>
 ## Campo
-
+Sigla | Campo
+| --- | --- 
+`c` | citta 
+`tn` | temperatura => numero
+`tum` | temperatura => UM
+`fa` | fenomeniAtmosferici
+`un` | umidita => numero
+`uum` | umidita => UM
 ## Descrizione delle modalità della messa online del servizio
 La messa online del servizio è stata possibile tramite l'applicativo online <a href="https://glitch.com/">Glitch</a> . 
 
