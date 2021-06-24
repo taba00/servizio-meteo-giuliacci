@@ -104,6 +104,7 @@ db.set(3, { citta: 'San Marino', temperatura: { numero: 28, UM: 'celsius'},  fen
 var prossimoId = 4;
 
 app.get('/meteo', (req, res) => {
+  /*
   const valoreJson = '';
   const all = '';
   for(const [idCitta, valoreJson] of db.entries())
@@ -111,7 +112,8 @@ app.get('/meteo', (req, res) => {
          valoreJson.id = idCitta;
          console.log(valoreJson);
     }
-  res.type('application/json').send(JSON.from(db));
+    */
+  res.type('application/json').send(Array.from(db));
   
   
 });
