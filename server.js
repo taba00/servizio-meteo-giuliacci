@@ -12,6 +12,8 @@ const cod_segreto = process.env.JWT_SECRET;
 
 app.use(express.json());
 
+//------------------------------------------------------------------------------//
+
 //-------------------------- REGISTRAZIONE UTENTI --------------------------//
 //username: gestore
 //password: vivailmeteo123
@@ -29,6 +31,8 @@ logins.set('utente', {
     salt: '69875',
     hash: 'd4aaaab9dfe83430fc06099a34996628c021d41e4e0eefc763b6b5665fcd7aa4'
 });
+
+//------------------------------------------------------------------------//
 
 //funzione per autenticare l'utente e generare il JWT
 function autenticazioneUtente(req, res) {
@@ -84,6 +88,8 @@ function autenticazioneUtente(req, res) {
 }
 
 //POST https://meteo-tabarrini-lorenzo.glitch.me/meteo/login
+//chiamata della funzione per effetturare il login utente
+//destinato a: chiunque
 app.post('/meteo/login', (req, res) => {
     if (autenticazioneUtente(req, res)) {
         res.sendStatus(200);
@@ -135,6 +141,7 @@ var prossimoId = 4;
 
 //GET https://meteo-tabarrini-lorenzo.glitch.me/meteo
 //restituisce tutti i dati meteo presenti nel servizio
+//destinato a: gestore, utente
 app.get('/meteo', (req, res) => {
     if (!req.cookies.sessionToken) {
         res.sendStatus(401);
@@ -161,6 +168,8 @@ app.get('/meteo', (req, res) => {
 });
 
 //GET https://meteo-tabarrini-lorenzo.glitch.me/meteo/meteoCitta/:id
+//restituisce tutti i dati meteo di una certa città, tramite l'id di essa
+//destinato a: gestore, utente
 app.get('/meteo/meteoCitta/:id', (req, res) => {
     if (!req.cookies.sessionToken) {
         res.sendStatus(401);
@@ -217,7 +226,8 @@ function verificaJson(primoJson, secondoJson) {
 }
 
 //POST https://meteo-tabarrini-lorenzo.glitch.me/meteo/aggiungiCitta
-//Aggiunge 
+//Aggiunge una nuova riga nel database interno nel sistema. Accetta solo body in JSON.
+//destinato a: gestore
 app.post('/meteo/aggiungiCitta', (req, res) => {
     // Si accetta solo body con tipo application/json
     if (!req.cookies.sessionToken) {
@@ -257,13 +267,9 @@ app.post('/meteo/aggiungiCitta', (req, res) => {
                     res.sendStatus(400);
                     return;
                 }
-                //console.log(jsonDiff.diffString(req.body, baseJson));
-                console.log("Payload: " + JSON.stringify(req.body));
-
+              
                 console.log('Sto aggiungendo ' + req.body.citta);
-
-                console.log(req.body.temperatura.numero);
-                // NB: manca la validazione dell'input
+              
                 var id = prossimoId++;
                 db.set(id, {
                     citta: req.body.citta,
@@ -287,7 +293,9 @@ app.post('/meteo/aggiungiCitta', (req, res) => {
     });
 });
 
-//DELETE 
+//DELETE https://meteo-tabarrini-lorenzo.glitch.me/meteo/eliminaCitta/:id
+//elimina una riga nel "database" tramite l'id della città.
+//destinato a: gestore
 app.delete('/meteo/eliminaCitta/:id', (req, res) => {
     if (!req.cookies.sessionToken) {
         res.sendStatus(401);
@@ -324,6 +332,9 @@ app.delete('/meteo/eliminaCitta/:id', (req, res) => {
 
 });
 
+//POST https://meteo-tabarrini-lorenzo.glitch.me/meteo/modificaDato
+//modifica un certo parametro del servizio metereologo.
+//destinato a: gestore
 app.post('/meteo/modificaDato', (req, res) => {
     if (!req.cookies.sessionToken) {
         res.sendStatus(401);
@@ -340,7 +351,7 @@ app.post('/meteo/modificaDato', (req, res) => {
 
         } else {
             console.log(chiaveVerificata);
-            if (chiaveVerificata.body.sub == 'gestore' || chiaveVerificata.body.sub == 'utente') {
+            if (chiaveVerificata.body.sub == 'gestore') {
                 const id = Number.parseInt(req.query.id);
                 const campo = req.query.campo;
                 const nuovoValore = req.query.nuovoValore;
