@@ -64,5 +64,14 @@ id | integer | id della città di cui si vogliono eliminare i dati meteo | Si
 La messa online del servizio è stata possibile tramite l'applicativo online <a href="https://glitch.com/">Glitch</a> . 
 
 ## Esempio descrittivo di utilizzo del servizio Web
-Alcuni esempi effettuati con il client [Postman](https://www.postman.com/)
+Alcuni esempi effettuati con il client [Postman](https://www.postman.com/)<br><br>
+Autenticazione:<br>
+![login](https://cdn.glitch.com/a7534710-3f80-4858-a492-a3c69bf1b400%2Flogin.PNG?v=1624532002459)
+<br>
+Aggiunta della città con i relativi dati metereologici:<br>
+![aggiungiCitta](https://cdn.glitch.com/a7534710-3f80-4858-a492-a3c69bf1b400%2Faggiungi.PNG?v=1624532406913)
+<br>
+Eliminazione di una città tramite l'identificativo della città:<br>
+![eliminaCitta](https://cdn.glitch.com/a7534710-3f80-4858-a492-a3c69bf1b400%2Felimina.PNG?v=1624532578165)
+
 
