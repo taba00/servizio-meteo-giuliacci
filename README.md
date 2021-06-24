@@ -25,20 +25,35 @@ Il linguaggio di programmazione utilizzato si basa su Express di Node JS.<br>Il 
 L'endpoint del servizio è il seguente: <code>[https://meteo-tabarrini-lorenzo.glitch.me/](https://meteo-tabarrini-lorenzo.glitch.me/)</code>
 <br><br>
 Autenticazione:
-### Login
+## POST [Login](https://meteo-tabarrini-lorenzo.glitch.me/login)
 Per effettuare l'autenticazione al servizio, è necessario essere registrati nel sistema. <br>L'autenticazione avviene tramite la <b>Basic Auth</b>.
 
 ## Lista dettagliata API Restful con relativa documentazione
-## meteo 
+## POST [meteo](https://meteo-tabarrini-lorenzo.glitch.me/meteo) 
 Rappresenta in formato JSON tutte le citta con i relativi dati meteo presenti nel servizio.
-<br><br>Tipo della richiesta HTTP: <b>POST</b><br>
-<br>Il metodo non ha parametri da fornire al momento della richiesta HTTP.
-## meteoCitta
+<br><br>Il metodo non ha parametri da fornire al momento della richiesta HTTP.
+## GET [meteoCitta](https://meteo-tabarrini-lorenzo.glitch.me/meteoCitta)
 Rappresenta in formato JSON la città richiesta tramite identificativo.
-<br><br>Tipo della richiesta HTTP: <b>GET</b><br>
 Campo | Tipo | Descrizione | Obbligatorio
 --- | --- | --- | --- 
-id | integer | Id della città di cui si vogliono sapere i dati meteo | Si
+id | integer | id della città di cui si vogliono sapere i dati meteo | Si
+## GET [aggiungiCitta](https://meteo-tabarrini-lorenzo.glitch.me/aggiungiCitta)
+Rappresenta il metodo per aggiungere una nuova città al servizio. <br>La richiesta può essere effettuata
+solo dall'amministratore del servizio (in questo caso l'utente "gestore").<br>
+```json
+{
+   "citta":"nomeCitta",
+   "temperatura":{
+      "numero":temperatura,
+      "UM":"unitaDiMisura"
+   },
+   "fenomeniAtmosferici":"tipoDiFenomenoAtmosferico",
+   "umidita":{
+      "numero":umidita,
+      "UM":"unitaDiMisura"
+   }
+}
+```
 
 ## Descrizione delle modalità della messa online del servizio
 La messa online del servizio è stata possibile tramite l'applicativo online <a href="https://glitch.com/">Glitch</a> . 

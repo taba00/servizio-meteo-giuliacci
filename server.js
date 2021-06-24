@@ -115,7 +115,7 @@ app.get('/meteo', (req, res) => {
   
 });
 
-//GET https://meteo-tabarrini-lorenzo.glitch.me/temperatura
+//GET https://meteo-tabarrini-lorenzo.glitch.me/meteoCitta
 //Tramite l'id della città, trova tutti i parametri metereologici
 app.get('/meteoCitta', (req, res) => {
   if(!req.cookies.sessionToken) 
