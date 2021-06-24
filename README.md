@@ -80,12 +80,12 @@ La messa online del servizio è stata possibile tramite l'applicativo online <a 
 ## Esempio descrittivo di utilizzo del servizio Web
 Alcuni esempi effettuati con il client [Postman](https://www.postman.com/)<br><br>
 Autenticazione:<br>
-![login](https://cdn.glitch.com/a7534710-3f80-4858-a492-a3c69bf1b400%2Flogin.PNG?v=1624532002459)
+![login](https://cdn.glitch.com/a7534710-3f80-4858-a492-a3c69bf1b400%2Flogin.PNG?v=1624556674161)
 <br>
 Aggiunta della città con i relativi dati metereologici:<br>
-![aggiungiCitta](https://cdn.glitch.com/a7534710-3f80-4858-a492-a3c69bf1b400%2Faggiungi.PNG?v=1624532406913)
+![aggiungiCitta](https://cdn.glitch.com/a7534710-3f80-4858-a492-a3c69bf1b400%2Faggiungi.PNG?v=1624556669320)
 <br>
 Eliminazione di una città tramite l'identificativo della città:<br>
-![eliminaCitta](https://cdn.glitch.com/a7534710-3f80-4858-a492-a3c69bf1b400%2Felimina.PNG?v=1624532578165)
+![eliminaCitta](https://cdn.glitch.com/a7534710-3f80-4858-a492-a3c69bf1b400%2Felimina.PNG?v=1624556671069)
 <br><br><br>
 
