@@ -159,6 +159,7 @@ app.get('/temperatura', (req, res) => {
   });
 });
 
+//
 app.post('/aggiungiCitta', (req, res) => {
   // Si accetta solo body con tipo application/json
   if(!req.cookies.sessionToken) 
@@ -191,23 +192,23 @@ app.post('/aggiungiCitta', (req, res) => {
   
       console.log('Sto aggiungendo ' + req.body.citta);
   
+        console.log(req.body.temperatura.numerot);
       // NB: manca la validazione dell'input
       var id = prossimoId++;
       db.set(id,
             {
                citta:req.body.citta,
-               "temperatura":{
-                  "numero": req.body.numero,
-                  "UM": req.body.UM
+               temperatura:{
+                  numero: req.body.temperatura.numero,
+                  UM: req.body.temperatura.UM
                },
-               "fenomeniAtmosferici": req.body.,
-               "umidita":{
-                  "numero":90,
-                  "UM":"percento"
+               fenomeniAtmosferici: req.body.fenomeniAtmosferici,
+               umidita:{
+                  numero: req.body.umidita.numero,
+                  UM: req.body.umidita.UM
                }
       });
   
-    // NB: nella risposta si aggiunge l'ID per notificare al client il nuovo ID della persona aggiunta
     res.json({
     id: id,
     citta: req.body.citta
