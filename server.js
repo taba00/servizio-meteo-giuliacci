@@ -105,12 +105,18 @@ var prossimoId = 4;
 
 app.get('/meteo', (req, res) => {
   var all = "";
-  for(var i = 0; i < db.lenght; i++)
+  for(const [key, value] of db.entries())
+    {
+      value.members['id'] = key ;
+         console.log(key, value)
+    }
+  /*for(var i = 0; i < db.lenght; i++)
     {
       all += (db.get(i));
     }
   console.log(all);
-  res.type('text/plain').send(all);
+  res.type('text/plain').send(all);*/
+  
   
 });
 
