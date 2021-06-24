@@ -85,8 +85,8 @@ function autenticazioneUtente(req, res)
   }
 }
 
-//POST https://meteo-tabarrini-lorenzo.glitch.me/login
-app.post('/login', (req, res) => {
+//POST https://meteo-tabarrini-lorenzo.glitch.me/meteo/login
+app.post('/meteo/login', (req, res) => {
   if(autenticazioneUtente(req, res)) {
     res.sendStatus(200);
   }
@@ -104,22 +104,20 @@ db.set(3, { citta: 'San Marino', temperatura: { numero: 28, UM: 'celsius'},  fen
 var prossimoId = 4;
 
 app.get('/meteo', (req, res) => {
-  let merged = '';
-  var valoreJson = "";
+  const valoreJson = '';
   for(const [idCitta, valoreJson] of db.entries())
     {
          valoreJson.id = idCitta;
          console.log(valoreJson);
          
     }
-  console.log(merged);
-  res.type('application/json').send(merged);
+  res.type('application/json').send(valoreJson);
   
   
 });
 
 //GET https://meteo-tabarrini-lorenzo.glitch.me/meteoCitta
-app.get('/meteoCitta', (req, res) => {
+app.get('/meteo/meteoCitta/:id', (req, res) => {
   if(!req.cookies.sessionToken) 
   {
     res.sendStatus(401);
@@ -139,7 +137,7 @@ app.get('/meteoCitta', (req, res) => {
       console.log(chiaveVerificata);
       if(chiaveVerificata.body.sub == 'gestore' || chiaveVerificata.body.sub == 'utente') {
         //const temperatura = Math.floor(Math.random() * 35) + 1
-      const id = Number.parseInt(req.query.id);
+      const id = Number.parseInt(req.params.id);
   
       if(isNaN(id)) 
       {
@@ -171,7 +169,7 @@ app.get('/meteoCitta', (req, res) => {
 });
 
 //POST https://meteo-tabarrini-lorenzo.glitch.me/aggiungiCitta
-app.post('/aggiungiCitta', (req, res) => {
+app.post('/meteo/aggiungiCitta', (req, res) => {
   // Si accetta solo body con tipo application/json
   if(!req.cookies.sessionToken) 
   {
@@ -203,7 +201,7 @@ app.post('/aggiungiCitta', (req, res) => {
   
       console.log('Sto aggiungendo ' + req.body.citta);
   
-        console.log(req.body.temperatura.numerot);
+        console.log(req.body.temperatura.numero);
       // NB: manca la validazione dell'input
       var id = prossimoId++;
       db.set(id,
@@ -230,7 +228,7 @@ app.post('/aggiungiCitta', (req, res) => {
 });
 
 //DELETE 
-app.delete('/eliminaCitta', (req, res) => {
+app.delete('/meteo/eliminaCitta/:id', (req, res) => {
     if(!req.cookies.sessionToken) 
   {
     res.sendStatus(401);
@@ -251,7 +249,7 @@ app.delete('/eliminaCitta', (req, res) => {
       console.log(chiaveVerificata);
       if(chiaveVerificata.body.sub == 'gestore') 
       {
-const id = Number.parseInt(req.query.id);
+const id = Number.parseInt(req.params.id);
   if(isNaN(id)) {
     res.sendStatus(400);
     return;
@@ -271,7 +269,7 @@ const id = Number.parseInt(req.query.id);
   
 });
 
-app.post('/modificaDato', (req, res) => {
+app.post('/meteo/modificaDato', (req, res) => {
       const id = Number.parseInt(req.query.id);
       var campo = req.query.campo;
       const nuovoValore = req.query.nuovoValore;

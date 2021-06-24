@@ -23,19 +23,19 @@ Il linguaggio di programmazione utilizzato si basa su Express di Node JS.<br>Il 
 L'endpoint del servizio è il seguente: `https://meteo-tabarrini-lorenzo.glitch.me/`
 <br><br>
 Autenticazione:
-## POST [Login](https://meteo-tabarrini-lorenzo.glitch.me/login)
+## POST [Login](https://meteo-tabarrini-lorenzo.glitch.me/meteo/login)
 Per effettuare l'autenticazione al servizio, è necessario essere registrati nel sistema. <br>L'autenticazione avviene tramite la *Basic Auth*.
 
 ## Lista dettagliata API Restful con relativa documentazione
 ## POST [meteo](https://meteo-tabarrini-lorenzo.glitch.me/meteo) 
 Rappresenta in formato JSON tutte le citta con i relativi dati meteo presenti nel servizio.
 <br><br>Il metodo non ha parametri da fornire al momento della richiesta HTTP.
-## GET [meteoCitta](https://meteo-tabarrini-lorenzo.glitch.me/meteoCitta)
+## GET [meteoCitta](https://meteo-tabarrini-lorenzo.glitch.me/meteo/meteoCitta)
 Rappresenta in formato JSON la città richiesta tramite identificativo.
 Campo | Tipo | Descrizione | Obbligatorio
 --- | --- | --- | --- 
 id | integer | id della città di cui si vogliono sapere i dati meteo | Si
-## GET [aggiungiCitta](https://meteo-tabarrini-lorenzo.glitch.me/aggiungiCitta)
+## GET [aggiungiCitta](https://meteo-tabarrini-lorenzo.glitch.me/meteo/aggiungiCitta)
 Rappresenta il metodo per aggiungere una nuova città al servizio. <br><br>La richiesta può essere effettuata
 solo dall'amministratore del servizio (in questo caso l'utente "gestore").<br><br>Nel body della richesta HTTP, il metodo accetta solo 
 il tipo di contenuto `application/json` nel seguente formato:<br>
@@ -53,7 +53,7 @@ il tipo di contenuto `application/json` nel seguente formato:<br>
    }
 }
 ```
-## DELETE [eliminaCitta](https://meteo-tabarrini-lorenzo.glitch.me/eliminaCitta)
+## DELETE [eliminaCitta](https://meteo-tabarrini-lorenzo.glitch.me/meteo/eliminaCitta)
 Elimina i dati meteo di una certa città tramite l'identificativo.
 Campo | Tipo | Descrizione | Obbligatorio
 --- | --- | --- | --- 
