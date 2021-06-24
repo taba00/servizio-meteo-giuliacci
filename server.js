@@ -263,7 +263,7 @@ app.post('/meteo/aggiungiCitta', (req, res) => {
                         UM: 'percento'
                     }
                 };
-                if (verificaJson(baseJson, req.body) != true) {
+                if (verificaJson(JSON.stringify(baseJson), JSON.stringify(req.body)) != true) {
                     res.sendStatus(400);
                     return;
                 }
@@ -329,7 +329,6 @@ app.delete('/meteo/eliminaCitta/:id', (req, res) => {
             }
         }
     });
-
 });
 
 //POST https://meteo-tabarrini-lorenzo.glitch.me/meteo/modificaDato
