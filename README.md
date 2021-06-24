@@ -63,9 +63,8 @@ Modifica un certo tipo di dato metereologico.
 Campo | Tipo | Descrizione | Obbligatorio
 --- | --- | --- | --- 
 `id` | integer | id della città di cui si vogliono modificare i dati meteo | Si
-`campo` | string | nome del campo che si vuole modificare (Vedi [eliminaCitta](https://google.com)) | Si
+`campo` | string | nome del campo che si vuole modificare (Vedi la struttura di Campo) | Si
 `nuovoValore` | integer, string | nuovo valore da assegnare al campo indicato precedentemente | Si
-<a id="campo"></a>
 ## Campo
 Sigla | Campo
 | --- | --- 
