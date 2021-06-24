@@ -105,12 +105,13 @@ db.set(3, { citta: 'San Marino', temperatura: { numero: 28, UM: 'celsius'},  fen
 var prossimoId = 4;
 
 app.get('/meteo', (req, res) => {
+  var all = "";
   for(var i = 0; i < db.lenght; i++)
     {
-      console.log(db.get(i));
+      all += (db.get(i));
     }
-  console.log(db.get(1));
-  //res.type('text/plain').send(db.prototype.values());
+  console.log(all);
+  res.type('text/plain').send(all);
   
 });
 
@@ -287,8 +288,7 @@ app.post('/modificaDato', (req, res) => {
       
       const riga = db.get(id);
       console.log(riga);
-      
-      console.log(riga.fenomeniAtmosferici);
+      console.log(riga.concat(".", str2));
      res.sendStatus(200);
   
 });
