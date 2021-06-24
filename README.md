@@ -29,9 +29,16 @@ Autenticazione:
 Per effettuare l'autenticazione al servizio, è necessario essere registrati nel sistema. <br>L'autenticazione avviene tramite la <b>Basic Auth</b>.
 
 ## Lista dettagliata API Restful con relativa documentazione
-Campo | Tipo | Descrizione
---- | --- | --- 
-nome campo | 301 | 283 
+## meteo 
+Rappresenta in formato JSON tutte le citta con i relativi dati meteo presenti nel servizio.
+<br><br>Tipo della richiesta HTTP: <b>POST</b><br>
+<br>Il metodo non ha parametri da fornire al momento della richiesta HTTP.
+## meteoCitta
+Rappresenta in formato JSON la città richiesta tramite identificativo.
+<br><br>Tipo della richiesta HTTP: <b>GET</b><br>
+Campo | Tipo | Descrizione | Obbligatorio
+--- | --- | --- | --- 
+id | integer | Id della città di cui si vogliono sapere i dati meteo | Si
 
 ## Descrizione delle modalità della messa online del servizio
 La messa online del servizio è stata possibile tramite l'applicativo online <a href="https://glitch.com/">Glitch</a> . 
