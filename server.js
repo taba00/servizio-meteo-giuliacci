@@ -108,7 +108,7 @@ var prossimoId = 4;
 
 //GET https://meteo-tabarrini-lorenzo.glitch.me/temperatura
 //Tramite l'id della città, trova tutti i parametri metereologici
-app.get('/temperatura', (req, res) => {
+app.get('/meteoCitta', (req, res) => {
   if(!req.cookies.sessionToken) 
   {
     res.sendStatus(401);
@@ -159,7 +159,8 @@ app.get('/temperatura', (req, res) => {
   });
 });
 
-//
+//POST https://meteo-tabarrini-lorenzo.glitch.me/aggiungiCitta
+//Solo il gestore può aggiungere le città. Questa api serve per aggiungere una citta e il meteo completo
 app.post('/aggiungiCitta', (req, res) => {
   // Si accetta solo body con tipo application/json
   if(!req.cookies.sessionToken) 
@@ -216,6 +217,48 @@ app.post('/aggiungiCitta', (req, res) => {
     }
   }
     });
+});
+
+//DELETE 
+app.delete('/eliminaCitta', (req, res) => {
+    if(!req.cookies.sessionToken) 
+  {
+    res.sendStatus(401);
+    return;
+  }
+  
+  const chiave = req.cookies.sessionToken;
+  console.log('Token: ' + chiave);
+  
+  jwt.verify(chiave, cod_segreto, (err, chiaveVerificata) => {
+    if(err) 
+    {
+      console.log(err);
+      res.sendStatus(401);
+    }
+    else 
+    {
+      console.log(chiaveVerificata);
+      if(chiaveVerificata.body.sub == 'gestore') 
+      {
+const id = Number.parseInt(req.query.id);
+  if(isNaN(id)) {
+    res.sendStatus(400);
+    return;
+  }
+  
+  if(!db.has(id)) {
+    res.sendStatus(404);
+    return;
+  }
+  
+  db.delete(id);
+  
+  res.sendStatus(200);
+    }
+  }
+    });
+  
 });
     
 
