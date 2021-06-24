@@ -12,6 +12,8 @@ const cod_segreto = process.env.JWT_SECRET;
 
 app.use(express.json());
 
+var jsonDiff = require('json-diff');
+
 
 //username: gestore
 //password: vivailmeteo123
@@ -211,6 +213,8 @@ app.post('/meteo/aggiungiCitta', (req, res) => {
           return;
         }
   
+      console.log(jsonDiff.diffString({ foo: 'bar' }, { foo: 'baz' }));
+      var 
       console.log("Payload: " + JSON.stringify(req.body));
   
       console.log('Sto aggiungendo ' + req.body.citta);

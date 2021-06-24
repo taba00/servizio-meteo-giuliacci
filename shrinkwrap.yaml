@@ -3,6 +3,7 @@ dependencies:
   express: 4.17.1
   fs: 0.0.2
   js-sha256: 0.9.0
+  json-diff: 0.5.4
   njwt: 1.1.0
 packages:
   /@types/node/15.12.4:
@@ -45,6 +46,14 @@ packages:
       node: '>= 0.8'
     resolution:
       integrity: sha512-zauLjrfCG+xvoyaqLoV8bLVXXNGC4JqlxFCutSDWA6fJrTo2ZuvLYTqZ7aHBLZSMOopbzwv8f+wZcVzfVTI2Dg==
+  /cli-color/0.1.7:
+    dependencies:
+      es5-ext: 0.8.2
+    dev: false
+    engines:
+      node: '>=0.1.103'
+    resolution:
+      integrity: sha1-rcMgD6RxzCEbDaf1ZrcemLnWc0c=
   /content-disposition/0.5.3:
     dependencies:
       safe-buffer: 5.1.2
@@ -94,6 +103,20 @@ packages:
     dev: false
     resolution:
       integrity: sha1-l4hXRCxEdJ5CBmE+N5RiBYJqvYA=
+  /difflib/0.2.4:
+    dependencies:
+      heap: 0.2.6
+    dev: false
+    resolution:
+      integrity: sha1-teMDYabbAjF21WKJLbhZQKcY9H4=
+  /dreamopt/0.6.0:
+    dependencies:
+      wordwrap: 1.0.0
+    dev: false
+    engines:
+      node: '>=0.4.0'
+    resolution:
+      integrity: sha1-2BPM2sjTnYrVJndVFKE92mZNa0s=
   /ecdsa-sig-formatter/1.0.11:
     dependencies:
       safe-buffer: 5.2.1
@@ -110,6 +133,12 @@ packages:
       node: '>= 0.8'
     resolution:
       integrity: sha1-rT/0yG7C0CkyL1oCw6mmBslbP1k=
+  /es5-ext/0.8.2:
+    dev: false
+    engines:
+      node: '>=0.4'
+    resolution:
+      integrity: sha1-q6jZ4ZQ6iVrJaDemKjmz9V7NlKs=
   /escape-html/1.0.3:
     dev: false
     resolution:
@@ -187,6 +216,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-4fJE7zkzwbKmS9R5kTYGDQ9ZFPg=
+  /heap/0.2.6:
+    dev: false
+    resolution:
+      integrity: sha1-CH4fELBGky/IWU3Z5tN4r8nR5aw=
   /http-errors/1.7.2:
     dependencies:
       depd: 1.1.2
@@ -237,6 +270,15 @@ packages:
     dev: false
     resolution:
       integrity: sha512-sga3MHh9sgQN2+pJ9VYZ+1LPwXOxuBJBA5nrR5/ofPfuiJBE2hnjsaN8se8JznOmGLN2p49Pe5U/ttafcs/apA==
+  /json-diff/0.5.4:
+    dependencies:
+      cli-color: 0.1.7
+      difflib: 0.2.4
+      dreamopt: 0.6.0
+    dev: false
+    hasBin: true
+    resolution:
+      integrity: sha512-q5Xmx9QXNOzOzIlMoYtLrLiu4Jl/Ce2bn0CNcv54PhyH89CI4GWlGVDye8ei2Ijt9R3U+vsWPsXpLUNob8bs8Q==
   /media-typer/0.3.0:
     dev: false
     engines:
@@ -438,6 +480,10 @@ packages:
       node: '>= 0.8'
     resolution:
       integrity: sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
+  /wordwrap/1.0.0:
+    dev: false
+    resolution:
+      integrity: sha1-J1hIEIkUVqQXHI0CJkQa3pDLyus=
 registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
@@ -446,4 +492,5 @@ specifiers:
   express: ^4.17.1
   fs: ^0.0.2
   js-sha256: ^0.9.0
+  json-diff: ^0.5.4
   njwt: ^1.1.0
