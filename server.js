@@ -288,7 +288,7 @@ app.post('/modificaDato', (req, res) => {
       
       const riga = db.get(id);
       console.log(riga);
-      console.log(riga.concat(".", str2));
+      console.log(riga.concat(".", campo));
      res.sendStatus(200);
   
 });
