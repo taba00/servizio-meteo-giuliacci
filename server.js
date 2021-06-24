@@ -104,8 +104,13 @@ db.set(3, { citta: 'San Marino', temperatura: { numero: 28, UM: 'celsius'},  fen
 
 var prossimoId = 4;
 
-app.get('/meteo', (req, res) => {  
-  res.send(JSON.parse(db));
+app.get('/meteo', (req, res) => {
+  var a = "";
+    db.forEach(e => {
+    a += e;
+  });
+  
+  res.type('text/plain').send(a.toString());
 });
 //var nextId = 3;
 
