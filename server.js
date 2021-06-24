@@ -105,10 +105,13 @@ db.set(3, { citta: 'San Marino', temperatura: { numero: 28, UM: 'celsius'},  fen
 var prossimoId = 4;
 
 app.get('/meteo', (req, res) => {
-  for()
-  console.log(db);
+  /*for(var i = 0; i < db.lenght; i++)
+    {
+      res.type('text/plain').send(db[i]);
+    }*/
+  res.type('text/plain').send('OKK');
+  
 });
-//var nextId = 3;
 
 //GET https://meteo-tabarrini-lorenzo.glitch.me/temperatura
 //Tramite l'id della città, trova tutti i parametri metereologici
