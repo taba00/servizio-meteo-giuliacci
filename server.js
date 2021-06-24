@@ -105,13 +105,13 @@ var prossimoId = 4;
 
 app.get('/meteo', (req, res) => {
   const valoreJson = '';
+  const all = '';
   for(const [idCitta, valoreJson] of db.entries())
     {
          valoreJson.id = idCitta;
          console.log(valoreJson);
-         
     }
-  res.type('application/json').send(valoreJson);
+  res.type('application/json').send(JSON.from(db));
   
   
 });
