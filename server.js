@@ -151,7 +151,6 @@ app.get('/meteo/meteoCitta/:id', (req, res) => {
     else {
       console.log(chiaveVerificata);
       if(chiaveVerificata.body.sub == 'gestore' || chiaveVerificata.body.sub == 'utente') {
-        //const temperatura = Math.floor(Math.random() * 35) + 1
       const id = Number.parseInt(req.params.id);
   
       if(isNaN(id)) 
@@ -285,6 +284,7 @@ const id = Number.parseInt(req.params.id);
 });
 
 app.post('/meteo/modificaDato', (req, res) => {
+  //validazione utente
       const id = Number.parseInt(req.query.id);
       const campo = req.query.campo;
       const nuovoValore = req.query.nuovoValore;
@@ -306,6 +306,11 @@ app.post('/meteo/modificaDato', (req, res) => {
         }
       else if(campo == 'tn')
         {
+          if(isNaN(nuovoValore)) 
+          {
+            res.sendStatus(400); //BAD REQUEST
+            return;
+          }
           riga.temperatura.numero = nuovoValore;
         }
       else if(campo == 'tum')
@@ -318,6 +323,11 @@ app.post('/meteo/modificaDato', (req, res) => {
         }
       else if(campo == 'un')
         {
+          if(isNaN(nuovoValore)) 
+          {
+            res.sendStatus(400); //BAD REQUEST
+            return;
+          }
           riga.umidita.numero = nuovoValore;
         }
       else if(campo == 'uum')

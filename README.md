@@ -58,6 +58,15 @@ Elimina i dati meteo di una certa città tramite l'identificativo.
 Campo | Tipo | Descrizione | Obbligatorio
 --- | --- | --- | --- 
 id | integer | id della città di cui si vogliono eliminare i dati meteo | Si
+## POST [modificaDato](https://meteo-tabarrini-lorenzo.glitch.me/meteo/modificaDato)
+
+DA FAREEEEEEEEEE
+
+
+Elimina i dati meteo di una certa città tramite l'identificativo.
+Campo | Tipo | Descrizione | Obbligatorio
+--- | --- | --- | --- 
+id | integer | id della città di cui si vogliono eliminare i dati meteo | Si
 ## Descrizione delle modalità della messa online del servizio
 La messa online del servizio è stata possibile tramite l'applicativo online <a href="https://glitch.com/">Glitch</a> . 
 
