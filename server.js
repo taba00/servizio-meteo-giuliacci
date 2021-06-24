@@ -103,7 +103,10 @@ db.set(2, { citta: 'Rimini', temperatura: { numero: 31, UM: 'celsius'},  fenomen
 db.set(3, { citta: 'San Marino', temperatura: { numero: 28, UM: 'celsius'},  fenomeniAtmosferici: 'Sole', umidita: { numero: 50, UM: 'percento'}});
 
 var prossimoId = 4;
-// fare restfull!!!
+
+app.get('/meteo', (req, res) => {  
+  res.send(JSON.parse(db));
+});
 //var nextId = 3;
 
 //GET https://meteo-tabarrini-lorenzo.glitch.me/temperatura
