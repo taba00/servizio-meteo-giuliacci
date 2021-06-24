@@ -22,11 +22,11 @@ Il linguaggio di programmazione utilizzato si basa su Express di Node JS.<br>Il 
 </ul>
 
 ## Documentazione dell’API implementata
-L'endpoint del servizio è il seguente: <code>[https://meteo-tabarrini-lorenzo.glitch.me/](https://meteo-tabarrini-lorenzo.glitch.me/)</code>
+L'endpoint del servizio è il seguente: `https://meteo-tabarrini-lorenzo.glitch.me/`
 <br><br>
 Autenticazione:
 ## POST [Login](https://meteo-tabarrini-lorenzo.glitch.me/login)
-Per effettuare l'autenticazione al servizio, è necessario essere registrati nel sistema. <br>L'autenticazione avviene tramite la <b>Basic Auth</b>.
+Per effettuare l'autenticazione al servizio, è necessario essere registrati nel sistema. <br>L'autenticazione avviene tramite la *Basic Auth*.
 
 ## Lista dettagliata API Restful con relativa documentazione
 ## POST [meteo](https://meteo-tabarrini-lorenzo.glitch.me/meteo) 
@@ -38,8 +38,9 @@ Campo | Tipo | Descrizione | Obbligatorio
 --- | --- | --- | --- 
 id | integer | id della città di cui si vogliono sapere i dati meteo | Si
 ## GET [aggiungiCitta](https://meteo-tabarrini-lorenzo.glitch.me/aggiungiCitta)
-Rappresenta il metodo per aggiungere una nuova città al servizio. <br>La richiesta può essere effettuata
-solo dall'amministratore del servizio (in questo caso l'utente "gestore").<br>
+Rappresenta il metodo per aggiungere una nuova città al servizio. <br><br>La richiesta può essere effettuata
+solo dall'amministratore del servizio (in questo caso l'utente "gestore").<br><br>Nel body della richesta HTTP, il metodo accetta solo 
+il tipo di contenuto `application/json` nel seguente formato:<br>
 ```json
 {
    "citta":"nomeCitta",
@@ -54,9 +55,14 @@ solo dall'amministratore del servizio (in questo caso l'utente "gestore").<br>
    }
 }
 ```
-
+## DELETE [eliminaCitta](https://meteo-tabarrini-lorenzo.glitch.me/eliminaCitta)
+Elimina i dati meteo di una certa città tramite l'identificativo.
+Campo | Tipo | Descrizione | Obbligatorio
+--- | --- | --- | --- 
+id | integer | id della città di cui si vogliono eliminare i dati meteo | Si
 ## Descrizione delle modalità della messa online del servizio
 La messa online del servizio è stata possibile tramite l'applicativo online <a href="https://glitch.com/">Glitch</a> . 
 
 ## Esempio descrittivo di utilizzo del servizio Web
+Alcuni esempi effettuati con il client [Postman](https://www.postman.com/)
 
