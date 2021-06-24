@@ -300,8 +300,35 @@ app.post('/meteo/modificaDato', (req, res) => {
       }
   
       const riga = db.get(id);
-      console.log(riga);
-      riga.campo = nuovoValore;
+      if(campo == 'c')
+        {
+          riga.citta = nuovoValore;
+        }
+      else if(campo == 'tn')
+        {
+          riga.temperatura.numero = nuovoValore;
+        }
+      else if(campo == 'tum')
+        {
+          riga.temperatura.UM = nuovoValore;
+        }
+      else if(campo == 'fa')
+        {
+          riga.fenomeniAtmosferici = nuovoValore;
+        }
+      else if(campo == 'un')
+        {
+          riga.umidita.numero = nuovoValore;
+        }
+      else if(campo == 'uum')
+        {
+          riga.umidita.UM = nuovoValore;
+        }
+      else
+      {
+        res.sendStatus(404); //NOT FOUND
+        return;
+      }
       res.sendStatus(200);
   
 });
