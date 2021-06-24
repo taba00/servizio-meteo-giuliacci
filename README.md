@@ -1,10 +1,8 @@
-# Realizzata da
-
-Lorenzo Tabarrini <br>
-Matricola n° 301996
-
-
 # Servizio Meteo "Giuliacci"
+## Realizzata da
+![logo_uni](https://cdn.glitch.com/a7534710-3f80-4858-a492-a3c69bf1b400%2Flogo_sti.png?v=1624532887636)
+Lorenzo Tabarrini <br>
+Matricola n° *301996*
 
 ## Descrizione del servizio implementato e del suo scopo
 
@@ -73,5 +71,5 @@ Aggiunta della città con i relativi dati metereologici:<br>
 <br>
 Eliminazione di una città tramite l'identificativo della città:<br>
 ![eliminaCitta](https://cdn.glitch.com/a7534710-3f80-4858-a492-a3c69bf1b400%2Felimina.PNG?v=1624532578165)
-
+<br><br><br>
 

@@ -52,7 +52,6 @@ function autenticazioneUtente(req, res)
   console.log('Decoded: ' + decoded);
 
   const [login, password] = decoded.split(':');
-  // console.log('Login: ' + login + ' password: ' + password)
   
   if(!logins.has(login)) {
     res.sendStatus(401);
@@ -116,7 +115,6 @@ app.get('/meteo', (req, res) => {
 });
 
 //GET https://meteo-tabarrini-lorenzo.glitch.me/meteoCitta
-//Tramite l'id della città, trova tutti i parametri metereologici
 app.get('/meteoCitta', (req, res) => {
   if(!req.cookies.sessionToken) 
   {
@@ -169,7 +167,6 @@ app.get('/meteoCitta', (req, res) => {
 });
 
 //POST https://meteo-tabarrini-lorenzo.glitch.me/aggiungiCitta
-//Solo il gestore può aggiungere le città. Questa api serve per aggiungere una citta e il meteo completo
 app.post('/aggiungiCitta', (req, res) => {
   // Si accetta solo body con tipo application/json
   if(!req.cookies.sessionToken) 
