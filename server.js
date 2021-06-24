@@ -286,7 +286,7 @@ const id = Number.parseInt(req.params.id);
 
 app.post('/meteo/modificaDato', (req, res) => {
       const id = Number.parseInt(req.query.id);
-      var campo = req.query.campo;
+      const campo = req.query.campo;
       const nuovoValore = req.query.nuovoValore;
   
       if(isNaN(id)) 
@@ -298,12 +298,11 @@ app.post('/meteo/modificaDato', (req, res) => {
         res.sendStatus(404); //NOT FOUND
         return;
       }
-        
-      
+  
       const riga = db.get(id);
       console.log(riga);
-      riga.fenomeniAtmosferici = nuovoValore;
-     res.sendStatus(200);
+      riga.campo = nuovoValore;
+      res.sendStatus(200);
   
 });
     
