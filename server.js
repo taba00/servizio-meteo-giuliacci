@@ -267,6 +267,30 @@ const id = Number.parseInt(req.query.id);
     });
   
 });
+
+app.post('/modificaDato', (req, res) => {
+      const id = Number.parseInt(req.query.id);
+      const campo = req.query.campo;
+      const nuovoValore = req.query.nuovoValore;
+  
+      if(isNaN(id)) 
+      {
+        res.sendStatus(400); //BAD REQUEST
+        return;
+      }
+      if(!db.has(id)) {
+        res.sendStatus(404); //NOT FOUND
+        return;
+      }
+        
+      const riga = db.get(id);
+      db.set(id,
+            {
+              campo: nuovoValore
+            });
+     res.sendStatus(200);
+  
+});
     
 
 
