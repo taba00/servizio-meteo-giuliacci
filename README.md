@@ -20,22 +20,22 @@ Il linguaggio di programmazione utilizzato si basa su Express di Node JS.<br>Il 
 </ul>
 
 ## Documentazione dell’API implementata
-L'endpoint del servizio è il seguente: `https://meteo-tabarrini-lorenzo.glitch.me/`
+L'endpoint del servizio è il seguente: `https://servizio-meteo-giuliacci.glitch.me/`
 <br><br>
 Autenticazione:
-## POST [Login](https://meteo-tabarrini-lorenzo.glitch.me/meteo/login)
+## POST [Login](https://servizio-meteo-giuliacci.glitch.me/meteo/login)
 Per effettuare l'autenticazione al servizio, è necessario essere registrati nel sistema. <br>L'autenticazione avviene tramite la *Basic Auth*.
 
 ## Lista dettagliata API Restful con relativa documentazione
-## POST [meteo](https://meteo-tabarrini-lorenzo.glitch.me/meteo) 
+## POST [meteo](https://servizio-meteo-giuliacci.glitch.me/meteo) 
 Rappresenta in formato JSON tutte le citta con i relativi dati meteo presenti nel servizio.
 <br><br>Il metodo non ha parametri da fornire al momento della richiesta HTTP.
-## GET [meteoCitta](https://meteo-tabarrini-lorenzo.glitch.me/meteo/meteoCitta)
+## GET [meteoCitta](https://servizio-meteo-giuliacci.glitch.me/meteo/meteoCitta)
 Rappresenta in formato JSON la città richiesta tramite identificativo.
 Campo | Tipo | Descrizione | Obbligatorio
 --- | --- | --- | --- 
 `id` | integer | id della città di cui si vogliono sapere i dati meteo | Si
-## GET [aggiungiCitta](https://meteo-tabarrini-lorenzo.glitch.me/meteo/aggiungiCitta)
+## GET [aggiungiCitta](https://servizio-meteo-giuliacci.glitch.me/meteo/aggiungiCitta)
 Rappresenta il metodo per aggiungere una nuova città al servizio. <br><br>La richiesta può essere effettuata
 solo dall'amministratore del servizio (in questo caso l'utente "gestore").<br><br>Nel body della richesta HTTP, il metodo accetta solo 
 il tipo di contenuto `application/json` nel seguente formato:<br>
@@ -53,12 +53,12 @@ il tipo di contenuto `application/json` nel seguente formato:<br>
    }
 }
 ```
-## DELETE [eliminaCitta](https://meteo-tabarrini-lorenzo.glitch.me/meteo/eliminaCitta)
+## DELETE [eliminaCitta](https://servizio-meteo-giuliacci.glitch.me/meteo/eliminaCitta)
 Elimina i dati meteo di una certa città tramite l'identificativo.
 Campo | Tipo | Descrizione | Obbligatorio
 --- | --- | --- | --- 
 `id` | integer | id della città di cui si vogliono eliminare i dati meteo | Si
-## POST [modificaDato](https://meteo-tabarrini-lorenzo.glitch.me/meteo/modificaDato)
+## POST [modificaDato](https://servizio-meteo-giuliacci.glitch.me/meteo/modificaDato)
 Modifica un certo tipo di dato metereologico.
 Campo | Tipo | Descrizione | Obbligatorio
 --- | --- | --- | --- 
@@ -75,8 +75,7 @@ Sigla | Campo
 `un` | umidita => numero
 `uum` | umidita => UM
 ## Descrizione delle modalità della messa online del servizio
-La messa online del servizio è stata possibile tramite l'applicativo online <a href="https://glitch.com/">Glitch</a> . 
-
+La messa online del servizio è stata possibile tramite l'applicativo online [Glitch](https://glitch.com/). 
 ## Esempio descrittivo di utilizzo del servizio Web
 Alcuni esempi effettuati con il client [Postman](https://www.postman.com/)<br><br>
 Autenticazione:<br>
