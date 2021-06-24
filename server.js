@@ -184,6 +184,13 @@ app.get('/meteo/meteoCitta/:id', (req, res) => {
   });
 });
 
+function verificaJson(primoJson, secondoJson){
+    for (var i in primoJson)
+        if (!secondoJson.hasOwnProperty(i))
+            return false;
+    return true;
+}
+
 //POST https://meteo-tabarrini-lorenzo.glitch.me/aggiungiCitta
 app.post('/meteo/aggiungiCitta', (req, res) => {
   // Si accetta solo body con tipo application/json
@@ -213,8 +220,20 @@ app.post('/meteo/aggiungiCitta', (req, res) => {
           return;
         }
   
-      console.log(jsonDiff.diffString({ foo: 'bar' }, { foo: 'baz' }));
-      var 
+      
+      var baseJson = {
+               citta:'Rimini',
+               temperatura:{
+                  numero: 30,
+                  UM: 'celsius'
+               },
+               fenomeniAtmosferici: 'Sole',
+               umidita:{
+                  numero: 80,
+                  UM: 'percento'
+               }
+      };
+      //console.log(jsonDiff.diffString(req.body, baseJson));
       console.log("Payload: " + JSON.stringify(req.body));
   
       console.log('Sto aggiungendo ' + req.body.citta);
