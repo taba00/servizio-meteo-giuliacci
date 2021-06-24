@@ -104,18 +104,16 @@ db.set(3, { citta: 'San Marino', temperatura: { numero: 28, UM: 'celsius'},  fen
 var prossimoId = 4;
 
 app.get('/meteo', (req, res) => {
-  var all = "";
-  for(const [key, value] of db.entries())
+  var merged = "";
+  for(const [idCitta, valoreJson] of db.entries())
     {
-      value.members['id'] = key ;
-         console.log(key, value)
+         valoreJson.id = idCitta;
+         merged = Object.assign({}, valoreJson)
+         console.log(valoreJson);
+         
     }
-  /*for(var i = 0; i < db.lenght; i++)
-    {
-      all += (db.get(i));
-    }
-  console.log(all);
-  res.type('text/plain').send(all);*/
+  //console.log(all);
+  res.type('application/json').send(merged);
   
   
 });
