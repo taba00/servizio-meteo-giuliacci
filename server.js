@@ -104,18 +104,31 @@ db.set(3, { citta: 'San Marino', temperatura: { numero: 28, UM: 'celsius'},  fen
 var prossimoId = 4;
 
 app.get('/meteo', (req, res) => {
-  /*
-  const valoreJson = '';
-  const all = '';
-  for(const [idCitta, valoreJson] of db.entries())
-    {
-         valoreJson.id = idCitta;
-         console.log(valoreJson);
+  if(!req.cookies.sessionToken) 
+  {
+    res.sendStatus(401);
+    return;
+  }
+  
+  const chiave = req.cookies.sessionToken;
+  console.log('Token: ' + chiave);
+  
+  jwt.verify(chiave, cod_segreto, (err, chiaveVerificata) => {
+    if(err) {
+      console.log(err);
+      res.sendStatus(401);
+      
     }
-    */
-  res.type('application/json').send(Array.from(db));
-  
-  
+    else {
+      console.log(chiaveVerificata);
+      if(chiaveVerificata.body.sub == 'gestore' || chiaveVerificata.body.sub == 'utente') {        
+      res.type('application/json').send(Array.from(db)); 
+      }
+      else {
+        res.sendStatus(401);
+      }
+    }
+  }); 
 });
 
 //GET https://meteo-tabarrini-lorenzo.glitch.me/meteoCitta
@@ -289,7 +302,7 @@ app.post('/meteo/modificaDato', (req, res) => {
       
       const riga = db.get(id);
       console.log(riga);
-      console.log(riga.concat(".", campo));
+      riga.fenomeniAtmosferici = nuovoValore;
      res.sendStatus(200);
   
 });
