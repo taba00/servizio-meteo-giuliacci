@@ -22,14 +22,16 @@ Il linguaggio di programmazione utilizzato si basa su Express di Node JS.<br>Il 
 </ul>
 
 ## Documentazione dell’API implementata
-L'endpoint del servizio è il seguente: <code><a href="https://meteo-tabarrini-lorenzo.glitch.me/">https://meteo-tabarrini-lorenzo.glitch.me/</a></code>
-<br>
+L'endpoint del servizio è il seguente: <code>[https://meteo-tabarrini-lorenzo.glitch.me/](https://meteo-tabarrini-lorenzo.glitch.me/)</code>
+<br><br>
 Autenticazione:
-<br>
+### Login
+Per effettuare l'autenticazione al servizio, è necessario essere registrati nel sistema. <br>L'autenticazione avviene tramite la <b>Basic Auth</b>.
 
-ttempt | #1 | #2 | #3 | #4 | #5 | #6 | #7 | #8 | #9 | #10 | #11
---- | --- | --- | --- |--- |--- |--- |--- |--- |--- |--- |---
-Seconds | 301 | 283 | 290 | 286 | 289 | 285 | 287 | 287 | 272 | 276 | 269
+## Lista dettagliata API Restful con relativa documentazione
+Campo | Tipo | Descrizione
+--- | --- | --- 
+nome campo | 301 | 283 
 
 ## Descrizione delle modalità della messa online del servizio
 La messa online del servizio è stata possibile tramite l'applicativo online <a href="https://glitch.com/">Glitch</a> . 
