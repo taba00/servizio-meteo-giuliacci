@@ -109,7 +109,8 @@ app.get('/meteo', (req, res) => {
     {
       res.type('text/plain').send(db[i]);
     }*/
-  res.type('text/plain').send('OKK');
+  
+  res.type('text/plain').send(db.prototype.values());
   
 });
 
@@ -283,11 +284,9 @@ app.post('/modificaDato', (req, res) => {
         return;
       }
         
+      
       const riga = db.get(id);
-      db.set(id,
-            {
-              campo: nuovoValore
-            });
+      console.log(riga);
      res.sendStatus(200);
   
 });
