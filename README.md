@@ -23,7 +23,7 @@ Il linguaggio di programmazione utilizzato si basa su Express di Node JS.<br>Il 
 L'endpoint del servizio è il seguente: `https://servizio-meteo-giuliacci.glitch.me/`
 <br><br>
 Autenticazione:
-## POST [Login](https://servizio-meteo-giuliacci.glitch.me/meteo/login)
+## POST [login](https://servizio-meteo-giuliacci.glitch.me/meteo/login)
 Per effettuare l'autenticazione al servizio, è necessario essere registrati nel sistema. <br>L'autenticazione avviene tramite la *Basic Auth*.
 
 ## Lista dettagliata API Restful con relativa documentazione
@@ -43,12 +43,12 @@ il tipo di contenuto `application/json` nel seguente formato:<br>
 {
    "citta":"nomeCitta",
    "temperatura":{
-      "numero":temperatura,
-      "UM":"unitaDiMisura"
+      "numero": "temperatura",
+      "UM": "unitaDiMisura"
    },
    "fenomeniAtmosferici":"tipoDiFenomenoAtmosferico",
    "umidita":{
-      "numero":umidita,
+      "numero":"umidita",
       "UM":"unitaDiMisura"
    }
 }
