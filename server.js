@@ -297,6 +297,32 @@ app.post('/meteo/aggiungiCitta', (req, res) => {
 //elimina una riga nel "database" tramite l'id della città.
 //destinato a: gestore
 app.delete('/meteo/eliminaCitta/:id', (req, res) => {
+  if (!req.cookies.sessionToken) {
+        res.sendStatus(401);
+        return;
+    }
+
+    const chiave = req.cookies.sessionToken;
+    console.log('Token: ' + chiave);
+
+    jwt.verify(chiave, cod_segreto, (err, chiaveVerificata) => {
+        if (err) {
+            console.log(err);
+            res.sendStatus(401);
+
+        } else {
+            console.log(chiaveVerificata);
+            if (chiaveVerificata.body.sub == 'gestore') 
+            {
+              //Qui il codice per ogni api
+            } 
+            else 
+            {
+                res.sendStatus(401);
+            }
+        }
+    });
+  /*
     if (!req.cookies.sessionToken) {
         res.sendStatus(401);
         return;
@@ -328,7 +354,7 @@ app.delete('/meteo/eliminaCitta/:id', (req, res) => {
                 res.sendStatus(200);
             }
         }
-    });
+    });*/
 });
 
 //POST https://meteo-tabarrini-lorenzo.glitch.me/meteo/modificaDato
