@@ -229,8 +229,7 @@ function verificaJson(primoJson, secondoJson) {
 //Aggiunge una nuova riga nel database interno nel sistema. Accetta solo body in JSON.
 //destinato a: gestore
 app.post('/meteo/aggiungiCitta', (req, res) => {
-    // Si accetta solo body con tipo application/json
-    if (!req.cookies.sessionToken) {
+  if (!req.cookies.sessionToken) {
         res.sendStatus(401);
         return;
     }
@@ -242,10 +241,13 @@ app.post('/meteo/aggiungiCitta', (req, res) => {
         if (err) {
             console.log(err);
             res.sendStatus(401);
+
         } else {
             console.log(chiaveVerificata);
-            if (chiaveVerificata.body.sub == 'gestore') {
-                if (req.get('Content-Type') != 'application/json') {
+            if (chiaveVerificata.body.sub == 'gestore') 
+            {
+              // Si accetta solo body con tipo application/json
+              if (req.get('Content-Type') != 'application/json') {
                     res.sendStatus(415); //UNSUPPORTED MEDIA TYPE
                     return;
                 }
@@ -288,6 +290,10 @@ app.post('/meteo/aggiungiCitta', (req, res) => {
                     id: id,
                     citta: req.body.citta
                 });
+            } 
+            else 
+            {
+                res.sendStatus(401);
             }
         }
     });
@@ -314,31 +320,7 @@ app.delete('/meteo/eliminaCitta/:id', (req, res) => {
             console.log(chiaveVerificata);
             if (chiaveVerificata.body.sub == 'gestore') 
             {
-              //Qui il codice per ogni api
-            } 
-            else 
-            {
-                res.sendStatus(401);
-            }
-        }
-    });
-  /*
-    if (!req.cookies.sessionToken) {
-        res.sendStatus(401);
-        return;
-    }
-
-    const chiave = req.cookies.sessionToken;
-    console.log('Token: ' + chiave);
-
-    jwt.verify(chiave, cod_segreto, (err, chiaveVerificata) => {
-        if (err) {
-            console.log(err);
-            res.sendStatus(401);
-        } else {
-            console.log(chiaveVerificata);
-            if (chiaveVerificata.body.sub == 'gestore') {
-                const id = Number.parseInt(req.params.id);
+              const id = Number.parseInt(req.params.id);
                 if (isNaN(id)) {
                     res.sendStatus(400);
                     return;
@@ -352,9 +334,13 @@ app.delete('/meteo/eliminaCitta/:id', (req, res) => {
                 db.delete(id);
 
                 res.sendStatus(200);
+            } 
+            else 
+            {
+                res.sendStatus(401);
             }
         }
-    });*/
+    });
 });
 
 //POST https://meteo-tabarrini-lorenzo.glitch.me/meteo/modificaDato
