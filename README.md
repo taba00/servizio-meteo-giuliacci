@@ -1,7 +1,7 @@
 # Servizio Meteo "Giuliacci"
 ## Realizzata da
 ![logo_uni](https://cdn.glitch.com/a7534710-3f80-4858-a492-a3c69bf1b400%2Flogo_sti.png?v=1624532887636)
-Lorenzo Tabarrini <br>
+<br> Lorenzo Tabarrini <br>
 Matricola n° *301996*
 
 ## Descrizione del servizio implementato e del suo scopo
